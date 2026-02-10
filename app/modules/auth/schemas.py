@@ -21,5 +21,10 @@ class UserOut(BaseModel):
     id: int
     email: EmailStr
     username: str
+    profile_image: str
+    timezone: str
+    bio: str
+    website: str
+    location: str
 
     model_config = ConfigDict(from_attributes=True)

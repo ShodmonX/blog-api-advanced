@@ -7,14 +7,14 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.db import get_db
 from app.modules.users.repositoy import UserRepository
 from .service import AuthService
-from .schemas import UserCreate
+from .schemas import UserCreate, UserOut
 
 router = APIRouter(
     prefix="/auth",
     tags=["Auth"],
 )
 
-@router.post("/register", status_code=status.HTTP_201_CREATED)
+@router.post("/register", status_code=status.HTTP_201_CREATED, response_model=UserOut)
 async def register(
     db: Annotated[AsyncSession, Depends(get_db)],
     payload: Annotated[UserCreate, Body(...)]
